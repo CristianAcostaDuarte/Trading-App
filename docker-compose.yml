@@ -6,7 +6,7 @@ services:
     build: ./project
     restart: always
     command: gunicorn --bind 0.0.0.0:5000 app:app
-    volumes: 
+    volumes:
       - ./project:/usr/src/app
     networks:
       - my-network
@@ -28,13 +28,12 @@ services:
     image: mongo:latest
     restart: always
     container_name: mongoDB
-    environment: 
-      MONGO_INITDB_ROOT_USERNAME: root 
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: secret
     volumes:
-      - ./data:/data/db 
+      - ./data:/data/db
       - ./data/log:/var/log/mongodb/
     ports:
-        - 27017:27017
-networks:
-  my-network
+      - 27017:27017
+networks: my-network
