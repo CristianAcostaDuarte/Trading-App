@@ -35,6 +35,6 @@ services:
       - ./data:/data/db 
       - ./data/log:/var/log/mongodb/
     ports:
-        - "27017:27017"
+        - 27017:27017
 networks:
   my-network
