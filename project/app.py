@@ -132,7 +132,7 @@ footer {{
 
 
 # Conection = MongoDB(app)
-client = MongoClient('mongo',27017)
+client = MongoClient('mongo')
 database = client['stockdb']
 
 
