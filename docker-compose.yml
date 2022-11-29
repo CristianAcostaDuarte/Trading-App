@@ -29,10 +29,16 @@ services:
   mongo:
     image: mongo:latest
     restart: always
-    container_name: mongo
+    hostname: test_mongodb
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
     volumes:
       - ./data:/data/db
       - ./data/log:/var/log/mongodb/
+    networks:
+      - my-network
     ports:
       - 27017:27017
       

@@ -132,7 +132,12 @@ footer {{
 
 
 # Conection = MongoDB(app)
-client = MongoClient('mongo:27017/')
+client = MongoClient(host='test_mongodb',
+                     port=27017,
+                     user='root',
+                     password='pass',
+                     authSource='admin')
+
 database = client['stockdb']
 
 
