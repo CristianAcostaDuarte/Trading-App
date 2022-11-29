@@ -5,7 +5,7 @@ services:
     container_name: web_app
     build: ./project
     restart: always
-    command: gunicorn --bind 0.0.0.0:5000/dava app:app
+    command: gunicorn --bind 0.0.0.0:5000 app:app
     volumes:
       - ./project:/usr/src/app
     networks:
