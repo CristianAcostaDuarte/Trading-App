@@ -134,7 +134,7 @@ footer {{
 # Conection = MongoDB(app)
 client = MongoClient(host='test_mongodb',
                      port=27017,
-                     user='root',
+                     username='root',
                      password='pass',
                      authSource='admin')
 
@@ -358,6 +358,15 @@ countdown_thread.start()
 def getDocuments(currency='dava'):
     collection = database[currency]
     return collection.find({})
+
+@app.route("/")
+def hello_world():
+    dava_chart=get_dava()
+    x=list(dava_chart['date'].values)[:2]
+    print(x)
+    y=list(dava_chart['price'].values)[:2]
+    print(y)
+    return render_template('result.html', dates=x, stocks=y)    
 
 
 @app.route('/<currency>', methods=['GET', 'POST'])
