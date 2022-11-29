@@ -15,16 +15,16 @@ services:
     depends_on:
       - mongo
 
-  nginx:
-    container_name: nginx_server
-    build: ./nginx
-    restart: always
-    networks:
-      - my-network
-    ports:
-      - 80:80
-    depends_on:
-      - web
+  # nginx:
+  #   container_name: nginx_server
+  #   build: ./nginx
+  #   restart: always
+  #   networks:
+  #     - my-network
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - web
 
   mongo:
     image: mongo:latest
