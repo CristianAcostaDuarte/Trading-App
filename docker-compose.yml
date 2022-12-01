@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   web:
-    container_name: web_app
+    container_name: web
     build: ./project
     restart: always
     command: gunicorn --bind 0.0.0.0:5000 app:app
@@ -15,22 +15,22 @@ services:
     depends_on:
       - mongo
 
-  # nginx:
-  #   container_name: nginx_server
-  #   build: ./nginx
-  #   restart: always
-  #   networks:
-  #     - my-network
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - web
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    restart: always
+    networks:
+      - my-network
+    ports:
+      - 80:80
+    depends_on:
+      - web
 
   mongo:
     image: mongo:latest
     restart: always
-    hostname: test_mongodb
-    container_name: mongodb
+    hostname: mongo
+    container_name: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=pass
