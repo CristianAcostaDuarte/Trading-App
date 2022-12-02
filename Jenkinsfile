@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Run tests against the container') {
       steps {
-        sh 'test.py'
+        sh 'test_models.py'
       }
     }
   }
