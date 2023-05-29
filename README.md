@@ -18,15 +18,15 @@ As a personal exercise, the application was deployed in AWS, leveraging the micr
 
 Here is the AWS architecture thati designed, the idea was to use a managed instance group to ensure availability to the service (thanks to auto healing if a zone is down then users will be redirect to the other zone thanks to the load balancer). Next i designed a VPC to enclose two subnets: one with a public IP to allow users around the world to connect to the application and a private subnet for the database backend that only communicate with the EC2 instances (i planned to use a nAT Gateway for the backend in order to fecth the data from the stock API).
 
-<img src="https://github.com/CristianAcostaDuarte/Trading-App/blob/main/images/Arquitectura2.png" width="600" height="200" alt="main page">
+<img src="https://github.com/CristianAcostaDuarte/Trading-App/blob/main/images/Arquitectura2.png" width="600" height="400" alt="main page">
 
 In order to create a more robust application i configured an NGINX as a reverse proxy to redirect request to the application, the application as i said before was made in flask and gunicorn was used as Python WSGI HTTP Server. 
 
-<img src="https://github.com/CristianAcostaDuarte/Trading-App/blob/main/images/App.png" width="600" height="200" alt="main page">
+<img src="https://github.com/CristianAcostaDuarte/Trading-App/blob/main/images/App.png" width="600" height="400" alt="main page">
 
 The last step was to decompose the monolithic application into microservices, so for that i used docker in order to create a container for each service in the application.
 
-<img src="https://github.com/CristianAcostaDuarte/Trading-App/blob/main/images/Docker.png" width="600" height="200" alt="main page">
+<img src="https://github.com/CristianAcostaDuarte/Trading-App/blob/main/images/Docker.png" width="600" height="400" alt="main page">
 
 
 The GitHub repository serves as a comprehensive collection of the app's source code and resources, enabling others to explore and learn from the project's implementations. The deployment in AWS showcases the practical application of microservices architecture in a real-world scenario, demonstrating the use of Docker, EC2 instances, and AWS Lambda to achieve scalable and reliable deployment of the Trading App.
