@@ -1,0 +1,27 @@
+upstream jenkins {
+  server 192.168.56.12:8080; # jenkins ip and port
+}
+
+
+server {
+  listen          80 default;       # Listen on port 80 for IPv4 requests
+
+  server_name     jenkins.course;  # replace 'jenkins.example.com' with your server domain name
+
+
+  access_log      /var/log/nginx/jenkins.access.log;
+  error_log       /var/log/nginx/jenkins.error.log;
+
+
+  location / {
+      proxy_pass         http://jenkins;
+      proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+      proxy_redirect     off;
+
+      proxy_set_header   Host              $host;
+      proxy_set_header   X-Real-IP         $remote_addr;
+      proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto $scheme;
+  }
+
+}

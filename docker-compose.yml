@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  web:
+    container_name: web
+    build: ./project
+    restart: always
+    command: gunicorn --bind 0.0.0.0:5000 app:app
+    volumes:
+      - ./project:/usr/src/app
+    networks:
+      - my-network
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    restart: always
+    networks:
+      - my-network
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    hostname: mongo
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - ./data:/data/db
+      - ./data/log:/var/log/mongodb/
+    networks:
+      - my-network
+    ports:
+      - 27017:27017
+      
+networks: 
+  my-network:
