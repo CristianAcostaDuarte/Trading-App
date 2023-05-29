@@ -1,7 +1,7 @@
 # Trading App. 📈
 
 
-# Trading App deployed in AWS
+## Description
 
 This GitHub repository showcases a Trading App that was developed as part of a challenge for the Endava internship, in collaboration with a team. The application aims to track stock data for three companies in NASDAQ and three cryptocurrencies. The app, built using Flask, provides a user-friendly interface that displays the stock data in a table format. Additionally, it leverages an API to fetch the latest stock information. The backend of the application utilizes MongoDB as the database, allowing for efficient storage and retrieval of time series data. The app also includes a graphical representation of the data using a graph.
 
